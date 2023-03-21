@@ -1,0 +1,23 @@
+.horizontal-section {
+    width: 80%;
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+  
+  .item {
+    display: inline-block;
+    width: 150px;
+    height: 200px;
+    background-color: #ccc;
+    margin-right: 10px;
+  }
+  .item:hover {
+    width: 153px;
+    height: 201px;
+    opacity:0.6;
+  }
+  .cardItem:hover {
+    width: 101%;
+    height: 61%;
+    opacity:0.6;
+  }

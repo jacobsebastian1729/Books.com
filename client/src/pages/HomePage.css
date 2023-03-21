@@ -1,0 +1,22 @@
+.carousel-container {
+    width: 100%;
+    overflow: hidden;
+  }
+  
+  .carousel-slide {
+    display: flex;
+    width: 200%; /* Set the width to be 3 times the width of one carousel item */
+    animation: carousel 10s infinite alternate;
+    animation-direction: alternate;
+  }
+  
+  .carousel-item {
+    width: calc(100%); /* Set the width to be one-third of the container width */
+    height: 400px;
+  }
+  
+  @keyframes carousel {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); } /* Set the transform to be negative two times the width of one carousel item */
+  }
+
