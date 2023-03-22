@@ -1,8 +1,13 @@
 import { Request, Response } from "express";
 import bcrypt from "bcrypt";
 
+import jwt from "jsonwebtoken";
+import dotenv from "dotenv"
+
 import User, { UserDocument } from "../models/User";
 import UserServices from "../services/users";
+
+
 
 export const createUserController = async (req: Request, res: Response) => {
   try {
@@ -31,6 +36,8 @@ export const createUserController = async (req: Request, res: Response) => {
   }
 };
 
+dotenv.config()
+const JWT_SECRET = process.env.JWT_SECRET as string;
 export const loginWithPassword = async (req: Request, res: Response) => {
   try {
     const userData = await UserServices.findUserByEmail(req.body.email);
@@ -54,9 +61,16 @@ export const loginWithPassword = async (req: Request, res: Response) => {
       return;
     }
 
+    const token = jwt.sign(
+      {  email: req.body.email},
+      JWT_SECRET,
+      {expiresIn: "1h"}
+    );
+
     res.json({
       status: true,
-      message: userData._id
+      message: userData._id,
+      token: token,
     });
     
   } catch (error) {
