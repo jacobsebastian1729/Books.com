@@ -10,11 +10,12 @@ export default function MyOrders(){
     const [myOrder, setMyOrder] = useState<MyOrderType[]>([])
 
     const userId = localStorage.getItem("userId")
+    const userToken = localStorage.getItem("userToken");
     const userIdUrl = `http://localhost:8001/orders/${userId}`
 
     function fetchOrderDetails(){
         axios
-        .get(userIdUrl)
+        .get(userIdUrl, { headers: { Authorization: `Bearer ${userToken}` } })
         .then((res) => res.data)
         .then((data) => setMyOrder(data))
     }
