@@ -2,14 +2,13 @@ import mongoose, { Document } from "mongoose";
 import User from "./User";
 
 export const orderProductSchema = new mongoose.Schema({
-  
   author: {
     type: String,
   },
   image: {
     type: String,
   },
-  isAvailable:{
+  isAvailable: {
     type: Boolean,
   },
   name: {
@@ -21,7 +20,7 @@ export const orderProductSchema = new mongoose.Schema({
   quantity: {
     type: Number,
   },
-  
+
   _id: {
     type: String,
   },

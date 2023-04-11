@@ -26,8 +26,7 @@ const updatePasswordById = async (
 const getUserById = async (userId: string): Promise<UserDocument | null> => {
   const foundUser = User.findOne({ _id: userId });
   return foundUser;
-}
-
+};
 
 export default {
   createUser,

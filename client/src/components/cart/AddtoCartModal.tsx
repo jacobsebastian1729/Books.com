@@ -12,7 +12,7 @@ import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
 import Grid from "@mui/system/Unstable_Grid";
 import Stack from "@mui/material/Stack";
-import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 
 import ProductListType from "../../redux/types/productType";
 import CartListType from "../../redux/types/cartType";
@@ -52,7 +52,6 @@ export default function AddtoCartModal({ prop }: ProductItems) {
     setInCart(found);
   }, [yourCart.cartList, prop._id]);
 
-  console.log(inCart, "Incart");
   const [cart, setCart] = useState<CartListType>({
     _id: "",
     name: "",
@@ -62,8 +61,6 @@ export default function AddtoCartModal({ prop }: ProductItems) {
     isAvailable: false,
     quantity: 0,
   });
-
-  console.log(yourCart.cartList, "cartout");
 
   function handleOpen() {
     setOpen(true);
@@ -86,84 +83,103 @@ export default function AddtoCartModal({ prop }: ProductItems) {
 
   return (
     <div>
-      {
-        (inCart && (!open))?
-        (<Link
-    to= "/mycart"
-    className="link"
-    style={{ textDecoration: "none"}}
-    >
-    <Button variant="outlined"  color="secondary" sx = {{border: 2, borderRadius: 5, pl: 3, pr: 3, pt:1, fontWeight: '600'}}> <ShoppingCartIcon/>IN CART</Button>
-    </Link>):
-        (<div><Button onClick={handleOpen} variant="contained" color="secondary" sx = {{borderRadius: 5, pl: 3, pr: 3, pt:1, fontWeight: '500'}}><ShoppingCartIcon/>ADD TO CART</Button>
-        <Modal
-          open={open}
-          onClose={handleClose}
-          aria-labelledby="modal-modal-title"
-          aria-describedby="modal-modal-description"
-        >
-          <Box sx={style}>
-            <Grid
-              container
-              rowSpacing={1}
-              columnSpacing={{ xs: 1, sm: 2, md: 3 }}
-            >
-              <Grid xs={6}>
-                <img src={prop.image} height="300" width="200" />
+      {inCart && !open ? (
+        <Link to="/mycart" className="link" style={{ textDecoration: "none" }}>
+          <Button
+            variant="outlined"
+            color="secondary"
+            sx={{
+              border: 2,
+              borderRadius: 5,
+              pl: 3,
+              pr: 3,
+              pt: 1,
+              fontWeight: "600",
+            }}
+          >
+            {" "}
+            <ShoppingCartIcon />
+            IN CART
+          </Button>
+        </Link>
+      ) : (
+        <div>
+          <Button
+            onClick={handleOpen}
+            variant="contained"
+            color="secondary"
+            sx={{ borderRadius: 5, pl: 3, pr: 3, pt: 1, fontWeight: "500" }}
+          >
+            <ShoppingCartIcon />
+            ADD TO CART
+          </Button>
+          <Modal
+            open={open}
+            onClose={handleClose}
+            aria-labelledby="modal-modal-title"
+            aria-describedby="modal-modal-description"
+          >
+            <Box sx={style}>
+              <Grid
+                container
+                rowSpacing={1}
+                columnSpacing={{ xs: 1, sm: 2, md: 3 }}
+              >
+                <Grid xs={6}>
+                  <img src={prop.image} height="300" width="200" />
+                </Grid>
+                <Grid xs={6}>
+                  <Typography
+                    id="modal-modal-description"
+                    variant="h5"
+                    component="h2"
+                    sx={{ mt: 0 }}
+                  >
+                    {prop.name}
+                  </Typography>
+                  <Typography id="modal-modal-description" sx={{ mt: 0 }}>
+                    Is now in your cart with {yourCart.cartList.length - 1}{" "}
+                    items
+                  </Typography>
+                  <Typography
+                    id="modal-modal-description"
+                    variant="h6"
+                    component="h2"
+                    sx={{ mt: 0 }}
+                  >
+                    ${prop.price} total
+                  </Typography>
+                </Grid>
+                <Grid xs={12} spacing={2} direction="column">
+                  <Button
+                    color="secondary"
+                    variant="outlined"
+                    onClick={handleClose}
+                    style={{ width: "100%" }}
+                    sx={{ mt: 1 }}
+                  >
+                    KEEP SHOPPING
+                  </Button>
+                  <Link
+                    to="/mycart"
+                    className="link"
+                    style={{ textDecoration: "none" }}
+                  >
+                    <Button
+                      color="secondary"
+                      variant="contained"
+                      style={{ width: "100%" }}
+                      sx={{ mt: 1 }}
+                    >
+                      CHECK OUT ({yourCart.cartList.length} ITEM)
+                    </Button>
+                  </Link>
+                </Grid>
               </Grid>
-              <Grid xs={6}>
-                <Typography
-                  id="modal-modal-description"
-                  variant="h5"
-                  component="h2"
-                  sx={{ mt: 0 }}
-                >
-                  {prop.name}
-                </Typography>
-                <Typography id="modal-modal-description" sx={{ mt: 0 }}>
-                  Is now in your cart with {yourCart.cartList.length-1} items
-                </Typography>
-                <Typography
-                  id="modal-modal-description"
-                  variant="h6"
-                  component="h2"
-                  sx={{ mt: 0 }}
-                >
-                  ${prop.price} total
-                </Typography>
-              </Grid>
-              <Grid xs={12} spacing={2} direction="column">
-                <Button
-                  color="secondary"
-                  variant="outlined"
-                  onClick={handleClose}
-                  style={{ width: "100%" }}
-                  sx={{ mt: 1 }}
-                >
-                  KEEP SHOPPING
-                </Button>
-                <Link
-                to="/mycart"
-                className = "link"
-                style={{textDecoration: "none"}}
-                >
-                <Button
-                  color="secondary"
-                  variant="contained"
-                  style={{ width: "100%" }}
-                  sx={{ mt: 1 }}
-                >
-                  CHECK OUT ({yourCart.cartList.length} ITEM)
-                </Button>
-                </Link>
-                
-              </Grid>
-            </Grid>
-          </Box>
-        </Modal>
-        </div>)
-      }
-      
+            </Box>
+          </Modal>
+        </div>
+      )}
     </div>
   );
 }

@@ -17,7 +17,7 @@ export const createProductController = async (req: Request, res: Response) => {
     const product = await ProductServices.createProduct(newProduct);
     res.json(product);
   } catch (error) {
-    console.log(error);
+    //console.log(error);
   }
 };
 
@@ -26,15 +26,15 @@ export const getProductListController = async (req: Request, res: Response) => {
     const productList = await ProductServices.productList();
     res.json(productList);
   } catch (error) {
-    console.log(error);
+    //console.log(error);
   }
 };
 
 export const getProductByIdController = async (req: Request, res: Response) => {
   try {
-    const product = await ProductServices.getProductById(req.params.productId)
+    const product = await ProductServices.getProductById(req.params.productId);
     res.json(product);
   } catch (error) {
-    console.log(error);
+    //console.log(error);
   }
 };

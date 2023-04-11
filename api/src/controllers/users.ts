@@ -2,12 +2,10 @@ import { Request, Response } from "express";
 import bcrypt from "bcrypt";
 
 import jwt from "jsonwebtoken";
-import dotenv from "dotenv"
+import dotenv from "dotenv";
 
 import User, { UserDocument } from "../models/User";
 import UserServices from "../services/users";
-
-
 
 export const createUserController = async (req: Request, res: Response) => {
   try {
@@ -36,16 +34,14 @@ export const createUserController = async (req: Request, res: Response) => {
   }
 };
 
-dotenv.config()
+dotenv.config();
 const JWT_SECRET = process.env.JWT_SECRET as string;
 export const loginWithPassword = async (req: Request, res: Response) => {
   try {
     const userData = await UserServices.findUserByEmail(req.body.email);
 
     if (!userData) {
-      res.json({ status: false,
-        message: `cant find user ${req.body.email}` 
-      });
+      res.json({ status: false, message: `cant find user ${req.body.email}` });
       return;
     }
 
@@ -55,32 +51,27 @@ export const loginWithPassword = async (req: Request, res: Response) => {
     const match = await bcrypt.compare(plainPassword, passwordDatabase);
 
     if (!match) {
-      res.json({ status: false,
-        message: "wrong password" 
-      });
+      res.json({ status: false, message: "wrong password" });
       return;
     }
 
-    const token = jwt.sign(
-      {  email: req.body.email},
-      JWT_SECRET,
-      {expiresIn: "1h"}
-    );
+    const token = jwt.sign({ email: req.body.email }, JWT_SECRET, {
+      expiresIn: "1h",
+    });
 
     res.json({
       status: true,
       message: userData._id,
       token: token,
     });
-    
   } catch (error) {
-    console.log(error);
+    //console.log(error);
   }
 };
 
 export const getUserByIdController = async (req: Request, res: Response) => {
   try {
-    const userData = await UserServices.getUserById(req.params.userId)
+    const userData = await UserServices.getUserById(req.params.userId);
     res.json({
       email: userData?.email,
       //id: userData?._id,
@@ -92,7 +83,7 @@ export const getUserByIdController = async (req: Request, res: Response) => {
       zipcode: userData?.zipcode,
     });
   } catch (error) {
-    console.log(error);
+    //console.log(error);
   }
 };
 
@@ -101,11 +92,9 @@ export const updataUserByIdController = async (req: Request, res: Response) => {
     const update = req.body;
     const userId = req.params.userId;
     const updatedUser = await UserServices.updateUserById(userId, update);
-    res.json({ status: true,
-      message: "userdetails update" 
-    });
+    res.json({ status: true, message: "userdetails update" });
   } catch (error) {
-    console.log(error);
+    //console.log(error);
   }
 };
 
@@ -126,10 +115,8 @@ export const updatePasswordByIdController = async (
       userId,
       newPassword
     );
-    res.json({ status: true,
-      message: "user password updated" 
-    });
+    res.json({ status: true, message: "user password updated" });
   } catch (error) {
-    console.log(error);
+    //console.log(error);
   }
 };

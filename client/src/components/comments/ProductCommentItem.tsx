@@ -117,19 +117,6 @@ function postComment(){
 /////////////////////////////
 
 
-/*var tinycolor = require("tinycolor2");
-
-function getAvatarColor():string{
-  let sum = 0;
-  let str = prop.userId.email
-  for (let i = 0; i < str.length; i++) {
-    sum += str.charCodeAt(i);
-  }
-
-  let remainder = sum%360;
-  return tinycolor({ h: remainder, s: 0.5, v: 0.7 }).toHexString()
-}*/
-
 function getAvatarColor(): string {
   let sum = 0;
   let str = prop.userId.email
