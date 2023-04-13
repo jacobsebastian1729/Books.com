@@ -37,8 +37,8 @@ export default function ProductCommentItem({prop}: CommentDetail){
 
     const [childComments, setChildComments] = useState<CommentType[]>([])
 
-    const commentIdUrl = `http://localhost:8001/comments/childcomments/${prop._id}`;
-
+    //const commentIdUrl = `http://localhost:8001/comments/childcomments/${prop._id}`;
+    const commentIdUrl = `https://books-backend-jbyp.onrender.com/comments/childcomments/${prop._id}`;
 
     const [chat, setChat] = useState(false);
 
@@ -82,7 +82,8 @@ export default function ProductCommentItem({prop}: CommentDetail){
 //////////////////////////////////////////////
 
 const userId = localStorage.getItem("userId")
-const userIdUrl = `http://localhost:8001/comments/${userId}`;
+//const userIdUrl = `http://localhost:8001/comments/${userId}`;
+const userIdUrl = `https://books-backend-jbyp.onrender.com/comments/${userId}`;
 
 const [value, setValue] = useState('');
 

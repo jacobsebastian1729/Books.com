@@ -35,7 +35,9 @@ export default function ProductDetail() {
   });
 
   const productId = useParams();
-  const productIdUrl = `http://localhost:8001/products/${productId.productId}`;
+  
+  //const productIdUrl = `http://localhost:8001/products/${productId.productId}`;
+  const productIdUrl = `https://books-backend-jbyp.onrender.com/products/${productId.productId}`;
 
   function fetchProductDetail() {
     axios

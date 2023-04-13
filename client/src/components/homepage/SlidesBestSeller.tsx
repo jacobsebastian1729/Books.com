@@ -19,7 +19,8 @@ export default function Slides(){
     
     const dispatch = useDispatch<AppDispatch>();
 
-    const productUrl = "http://localhost:8001/products";
+    //const productUrl = "http://localhost:8001/products";
+    const productUrl = "https://books-backend-jbyp.onrender.com/products";
 
     useEffect(() => {
     dispatch(fetchProductData(productUrl));

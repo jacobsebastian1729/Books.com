@@ -39,7 +39,10 @@ export default function UpdatePassword() {
   });
 
   const userId = localStorage.getItem("userId");
-  const changePasswordUrl = `http://localhost:8001/users/password/${userId}`;
+
+  //const changePasswordUrl = `http://localhost:8001/users/password/${userId}`;
+  const changePasswordUrl = `https://books-backend-jbyp.onrender.com/users/password/${userId}`;
+  
   const userToken = localStorage.getItem("userToken");
   const [response, setResponse] = useState<string>("");
   const doSomething = (value: InitialValues) => {

@@ -40,8 +40,8 @@ export default function ProductComment({prop}: ProductDetails){
 
     const dispatch = useDispatch<AppDispatch>();    
 
-    const commentIdUrl = `http://localhost:8001/comments/parentcomments/${prop._id}`;
-
+    //const commentIdUrl = `http://localhost:8001/comments/parentcomments/${prop._id}`;
+    const commentIdUrl = `https://books-backend-jbyp.onrender.com/comments/parentcomments/${prop._id}`;
     
 
    // function fetchProductComments(){
@@ -95,7 +95,8 @@ useEffect(() => {
 
 
       //const userId = localStorage.getItem("userId")
-      const productIdUrl = `http://localhost:8001/comments/${userId}`;
+      //const productIdUrl = `http://localhost:8001/comments/${userId}`;
+      const productIdUrl = `https://books-backend-jbyp.onrender.com/comments/${userId}`;
 
       function postComment(){
     
